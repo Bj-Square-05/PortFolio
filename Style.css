@@ -1,0 +1,662 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border:none;
+    outline: none;
+    font-family:"Poppins", sans-serif;
+}
+
+:root{
+    --bg-color:#081b29;
+    --text-color:#333;
+    --main-color:#00abf0;
+    --second-text-color:#555;
+    --cover-color:linear-gradient(45deg, #00abf0, #006e9a);
+    --pages-color:linear-gradient(90deg, #fff, #ddd);
+    --border:.125rem solid #00abf0;
+    --box-shadow:0 0 .6rem rgba(0,0,0, .2);
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+}
+
+.wrapper{
+    position: relative;
+    width: 66rem;
+    height: 45rem;
+    padding: 2rem;
+    perspective: 250rem;
+    animation: show-animate 2s forwards;
+}
+
+@keyframes show-animate{
+    
+    0%,
+    30% {
+        opacity: 0;
+        transform: rotate(-10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+}
+
+.cover{
+    position: absolute;
+    width: 50%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--cover-color);
+    box-shadow: var(--box-shadow);
+    border-top-left-radius:.6rem;
+    border-bottom-left-radius: .6rem;
+    transform-origin: right;
+}
+
+.cover.cover-left{
+    z-index: -1;
+}
+
+.cover.cover-right{
+    z-index: 100;
+    transition: transform 1s cubic-bezier(1,1,1,1);
+}
+
+.cover.cover-right.turn{
+    transform: rotateY(180deg);
+}
+
+.book{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    perspective: 250rem;
+}
+
+.book .book-page{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: white;
+    box-shadow: 0 0 .6rem rgba(0,0,0,.1);
+    display: flex;
+    padding: 2rem;
+}
+
+.book-page.page-left{
+    box-shadow: .6rem .6rem .6rem rgba(0, 0, 0, .1);
+}
+
+.profile-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-page img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: .25rem solid #00abf0;
+    margin-bottom: .8rem;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.profile-page img:hover{
+    box-shadow: 0 0 50px #00abf0;
+}
+
+.profile-page h1{
+    color: black;
+    font-family: Georgia;
+    font-weight: 600;
+    font-size: 2.5rem;
+}
+
+.profile-page h3{
+    color: var(--main-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: Georgia;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.profile-page h3:hover{
+    text-decoration: underline;
+}
+
+.profile-page .social-media a{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-right:.2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: transparent;
+    border: var(--border);
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: var(--main-color);
+    transition: .5s;
+}
+
+.profile-page .social-media a:hover{
+    color:white;
+    background: #00abf0;
+}
+
+.profile-page p{
+    text-align: justify;
+    font-family: Georgia;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.btn{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 11rem;
+    height: 3rem;
+    background-color:transparent;
+    font-family: Constantia;
+    font-weight: 600;
+    border: var(--border);
+    border-radius: .3rem;
+    font-size: 1.3rem;
+    color:var(--main-color);
+    font-weight: 500;
+    margin: 0 1rem;
+    transition: .3s;
+}
+
+.btn:hover{
+    background: #00abf0;
+    color: white;
+    box-shadow: 0 0 25px #00abf0;
+}
+
+.book-page.page-right{
+    position: absolute;
+    right: 0;
+    transform-style: preserve-3d;
+    transform-origin: left;
+    transition: transform 1s cubic-bezier(1,1,1,1);
+}
+
+.book-page.page-right.turn{
+    transform:rotateY(-180deg);
+}
+
+.book-page .page-front,
+.book-page .page-back{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    padding: 1.5rem 2rem;
+}
+
+.book-page .page-front{
+    transform: rotateY(0deg) translateZ(1px);
+}
+
+.book-page .page-back{
+    transform: rotateY(180deg) translateZ(1px);
+}
+
+.title{
+    text-align: center;
+    margin-bottom: 2rem;
+    background: #00abf0;
+    color: white;
+    border-right:0px solid #00abf0;
+    border: 2px solid #00abf0;
+    padding-right: 10px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    font-family: Georgia;
+}
+
+hr{
+    position: absolute;
+    border: 2px solid #00abf0;
+    width: 1px;
+    height: 72%;
+    left: 45px;
+}
+
+.workedu-box .workedu-content {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.workedu-content .year{
+    color:#00abf0;
+    font-size: 1.2rem;
+    font-family: Cambria;
+    text-decoration: underline;
+}
+
+.workedu-content .year i{
+    margin-right: .6rem;
+    color:#00abf0;
+    padding: 5px;
+    font-size: 1.2rem;
+    background: white;
+    border: .1rem solid #00abf0;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.workedu-content .year i:hover{
+    background: #00abf0;
+    color: white;
+}
+
+.workedu-content h3{
+    font-size: 1.2rem;
+    text-align: justify;
+    margin-left: 2.5rem;
+    font-family: Cambria;
+    font-weight: 600;
+    color: black;
+}
+
+.workedu-content p{
+    font-size: 1rem;
+    font-family: Cambria;
+    margin-left: 2.5rem;
+    color: black;
+}
+
+
+/*------------------------------------*/
+
+.workedu1-box .workedu1-content {
+    position: relative;
+    border: var(--border);
+    border-radius: .8rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    cursor: pointer;
+    height: 6.5rem;
+    transition: .2s;
+}
+
+.workedu1-box .workedu1-content:hover{
+    box-shadow: 0 0 15px #00abf0;
+    background: white;
+}
+
+.workedu1-content .year{
+    color:#006e9a;
+    font-size: .9rem;
+    margin-top: .5rem;
+    text-align: right;
+    font-weight: 600;
+    margin-right: 1rem;
+    font-family: Cambria;
+}
+
+.workedu1-content h3{
+    font-size: 1.2rem;
+    text-align: justify;
+    font-family: Cambria;
+    font-weight: 600;
+    color: #00abf0;
+    margin-left: 0.5rem;
+}
+
+.workedu1-content p{
+    font-size: .9rem;
+    font-family: Cambria;
+    color: black;
+    margin-left: 0.5rem;
+}
+
+/*------------------------------------*/
+
+.number-page{
+    position: absolute;
+    bottom: 1.2rem;
+    left: 50%;
+    font-weight: 600;
+    transform: translateX(-50%);
+}
+
+.nextprev-btn{
+    position: absolute;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 2rem;
+    height: 2rem;
+    bottom: 1.2rem;
+    right: 1.2rem;
+    cursor: pointer;
+    color: #00abf0;
+    border: 1px solid #00abf0;
+    background: transparent;
+    font-size: 30px;
+    transition: .5s;
+}
+
+.nextprev-btn:hover{
+    background: #00abf0;
+    color: white;
+    box-shadow: 0 0 20px #00abf0;
+}
+
+.nextprev-btn.back{
+    left: 1.5rem;
+}
+
+.services-box{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+
+.services-box .services-content{
+    flex: 1 1 10rem;
+    border: var(--border);
+    border-radius: .5rem;
+    padding: 1rem 0rem .9rem;
+    text-align: center;
+    transition: .3s ease;
+    cursor: pointer;
+}
+
+.services-box .services-content:hover{
+    box-shadow: 0 0 25px #00abf0;
+    background: white;
+}
+
+.services-content h3{
+    font-size: 1.10rem;
+    font-family: Cambria;
+    color:black;
+    font-weight: 600;
+    margin: .2rem 0rem .2rem 0rem;
+}
+
+.services-content p{
+    font-size: 1rem;
+    text-align: center;
+    font-family: Georgia;
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+}
+
+.services-content .btn{
+    width: 8rem;
+    height: 2.5rem;
+    margin-top: .5rem;
+    background: #00abf0;
+    color:white;
+}
+
+.services-content .btn:hover{
+    text-decoration: underline;
+    box-shadow: none;
+}
+
+.skills-box{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.skills-box .skills-content{
+    flex: 1 1 20rem;
+}
+
+.skills-content h3{
+    font-size: 1.3rem;
+    line-height: 1;
+    font-family: Calibri;
+    color: #00abf0;
+    text-decoration: underline;
+    margin-bottom: 1rem;
+}
+
+.skills-content .content{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.skills-content .content span{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:white;
+    width: 4rem;
+    height: 3rem;
+    font-size: .8rem;
+    cursor: pointer;
+    box-shadow:  0 0 8px #00abf0;
+    border-radius: .3rem;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.skills-content .content span:hover{
+    transform: scale(1.1);
+}
+
+.skills-content .content span img{
+    height: 30px;
+    width: 30px;
+}
+
+.project-box .img-box{
+    display: flex;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    width: 90%;
+    height: 12rem;
+    overflow: hidden;
+    border: 5px solid white;
+    border-radius: 2rem;
+}   
+
+.project-box .img-box img{
+    width: 100%;
+    object-fit:cover;
+    cursor: pointer;
+    transition: .5s ease;
+}
+
+.project-box .img-box img:hover{
+    transform: scale(1.1);
+}
+
+.project-box .info-box{
+    margin: 0rem 0rem 1rem;
+}
+
+.project-box .info-title{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.project-box .info-title h3{
+    font-size: 1.3rem;
+    line-height: 1;
+    font-family: Calibri;
+    margin-bottom: .5rem;
+    color: #00abf0;
+    text-decoration: underline;
+}
+
+.project-box .info-box span{
+    font-weight: 600;
+    margin-right: 1rem;
+    font-style: italic;
+    text-decoration: underline;
+    font-size: 1rem;
+}
+
+.info-box .teach-content h3{
+    font-size: 1.3rem;
+    line-height: 1;
+    font-family: Calibri;
+    margin-bottom: .5rem;
+    color: #00abf0;
+    text-decoration: underline;
+}
+
+.info-box .teach-content .teach{
+    display: flex;
+    justify-content: center;
+    margin-top: .7rem;
+    margin-bottom: .7rem;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.info-box .teach-content .teach span{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:white;
+    width: 4rem;
+    height: 3rem;
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+    font-size: .8rem;
+    cursor: pointer;
+    box-shadow:  0 0 8px #00abf0;
+    border-radius: .3rem;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.info-box .teach-content .teach span:hover{
+    transform: scale(1.1);
+}
+
+.info-box p,
+.info-box p a{ 
+    text-align: justify;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: Georgia;
+}
+
+.info-box p a:hover{
+    text-decoration: underline;
+}
+
+.contact-box{
+    text-align: center;
+}
+
+.contact-box .field{
+    width: 100%;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: .3rem;
+    padding: .8rem; 
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    text-transform:uppercase;
+}
+
+.contact-box .field::placeholder{
+    color: black;
+}
+
+.contact-box textarea{
+    resize: none;
+    height: 10rem;
+}
+
+.contact-box .btn{
+    background: white;
+    color: #00abf0;
+    border: var(--border);
+    margin: 0rem;
+}
+
+.contact-box .btn:hover{
+    background: #00abf0;
+    color: white;
+    box-shadow: none;
+}
+
+.back-profile{
+    position: absolute;
+    bottom: 1.2rem;
+    right: 2rem;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: var(--border);
+    border-radius: .3rem;
+    font-size: 1.1rem;
+    color: #00abf0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+
+.back-profile:hover{
+    background: #00abf0;
+    color: white;
+}
+
+.back-profile::placeholder{
+    font-family: Calibri;
+}
+
+.back-profile p{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    font-family: Georgia;
+    transform: translateX(-50%) scale(.5);
+    color: #00abf0;
+    font-size: 1rem;
+    opacity: 0;
+    transition: .2s;
+}
+
+.back-profile:hover p{
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    top: -1.8rem;
+}
